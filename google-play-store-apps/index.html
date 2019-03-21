@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Google Play Store Reviews</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css"
+    />
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/infinite-scroll@3.0.5/js/index.min.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Ubuntu"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="static/css/style.css" />
+    <!-- <script
+      type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"
+    ></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('#content').infinitescroll(
+          {
+            navSelector: '#next:last',
+            nextSelector: '#next:last',
+            itemSelector: '#content',
+            debug: false,
+            dataType: 'html',
+            maxPage: 4,
+            path: function(index) {
+              return 'index' + index + '.html';
+            }
+            // appendCallback : false, // USE FOR PREPENDING
+          },
+          function(newElements, data, url) {
+            // used for prepending data
+            // $(newElements).css('background-color','#ffef00');
+            // $(this).prepend(newElements);
+          }
+        );
+      });
+    </script> -->
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="index.html">
+              <img
+                class="play-store-badge"
+                src="static/images/google-play.svg"
+              />
+            </a>
+          </div>
+        </div>
+      </nav>
+      <div class="hero text-center">
+        <h1>Google Play Store Apps</h1>
+        <p>Making Sense of the Reviews</p>
+      </div>
+      <div
+        class="container"
+        data-infinite-scroll='{ "path": ".pagination__next", "append": ".post", "history": false }'
+      >
+        <div class="row margin-top-50">
+          <div class="col-md-2">
+            <aside class="filters">
+              <div class="panel panel-default">
+                <div class="panel-heading">Filter Search</div>
+                <div class="panel-body">
+                  <div class="form-group">
+                    <ul class="list-group" id="filters">
+                      <li class="filter list-group-item">
+                        <label for="date">App Name</label>
+                        <input
+                          class="form-control"
+                          id="datetime"
+                          type="text"
+                          placeholder="Flickr"
+                        />
+                      </li>
+                      <li class="filter list-group-item">
+                        <label for="city">Translated Review</label>
+                        <input
+                          class="form-control"
+                          id="city"
+                          type="text"
+                          placeholder="Wow"
+                        />
+                      </li>
+                      <li class="filter list-group-item">
+                        <label for="state">Sentiment</label>
+                        <input
+                          class="form-control"
+                          id="state"
+                          type="text"
+                          placeholder="Positive or Negative"
+                        />
+                      </li>
+                      <li class="filter list-group-item">
+                        <label for="country">Sentiment Polarity</label>
+                        <input
+                          class="form-control"
+                          id="country"
+                          type="text"
+                          placeholder="-1 to +1"
+                        />
+                      </li>
+                      <li class="filter list-group-item">
+                        <label for="shape">Sentiment Subjectivity</label>
+                        <input
+                          class="form-control"
+                          id="shape"
+                          type="text"
+                          placeholder="0 to 1"
+                        />
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </div>
+          <div class="col-md-10">
+            <div id="table-area" class="">
+              <h1 class="text-center loader" id="loader">Cleaned Data</h1>
+              <table id="reviews-table" class="table table-striped">
+                <thead>
+                  <tr>
+                    <th class="table-head">App Name</th>
+                    <th class="table-head">Translated Review</th>
+                    <th class="table-head">Sentiment</th>
+                    <th class="table-head">Sentiment Polarity</th>
+                    <th class="table-head">Sentiment Subjectivity</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer class="footer">
+        <span id="bottom app-info"
+          ><a
+            href="https://github.com/Shail-Shouryya/Google-play-store-apps-sentiment-analysis"
+          ></a
+          >Google Play Store Reviews</span
+        >
+      </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
+    <script src="static/js/distinct_apps_no_null_or_duplicate_reviews_merged_df.js"></script>
+    <script src="static/js/app.js"></script>
+  </body>
+</html>
