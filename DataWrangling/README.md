@@ -1,4 +1,4 @@
-## Decomposing the Goal:
+## Decomposing the Goal
 Is there a correlation between the ratings an app receives on the Google Play Store with the genre the app is categorized as and the number of downloads and reviews it receives?
     
 ## Identify Data Sources
