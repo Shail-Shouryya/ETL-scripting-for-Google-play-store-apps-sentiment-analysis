@@ -22,10 +22,10 @@ Pandas did not join the dataframes properly after dropping the incomplete and du
 Finally resorted to using nested subqueries in MySQL to drop not only the duplicate and null reviews data, but also the app information data - apparently the scraped data had the same app information multiple times...
 
 ## Analyze for Trends
-    Group data by app, genre, ...... and observe trends
+Group data by app, genre, ...... and observe trends
 
 ## Acknowledge Limitations
-    Used the default column value for sentiment analysis since didn't get own ML model figured out yet
+Used the default column value for sentiment analysis since didn't get own ML model figured out yet
 
 ## Make the Call or Tell the Story
     
