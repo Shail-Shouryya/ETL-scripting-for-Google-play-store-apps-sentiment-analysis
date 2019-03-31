@@ -16,19 +16,15 @@ class Raw_Methods:
         self.csv1 = csv1
         self.csv2 = csv2
         print (f"Initialized {self.csv1} as self.csv1 and {self.csv2} as self.csv2. \n")
-
-    def import_csvs (self):
-        left_df = pd.read_csv(self.csv1)
+        self.left_df = pd.read_csv(self.csv1)
         print (f"The first CSV has {len(left_df)} rows of data after converting the CSV to a Pandas dataframe.")
-        right_df = pd.read_csv(self.csv2)
+        self.right_df = pd.read_csv(self.csv2)
         print (f"The second csv has {len(right_df)} rows of data after converting the CSV to a Pandas dataframe.")
-        return (left_df, right_df)
 
     def drop_right_NaN (self):
-        left_df, right_df = self.import_csvs()
-        dropped_NaN_right_df = right_df.dropna(axis=0, how='any', thresh=None, subset=None, inplace=False)
+        dropped_NaN_right_df = self.right_df.dropna(axis=0, how='any', thresh=None, subset=None, inplace=False)
         print (f'The seond dataframe has {len(dropped_NaN_right_df)} rows after dropping the "NaN" values.')
-        return (left_df, dropped_NaN_right_df)
+        return (dropped_NaN_right_df)
 
     def drop_right_duplicates_then_NaN (self):
         left_df, right_df = self.import_csvs()
@@ -90,7 +86,7 @@ class SQL_Data_Wrangling():
         return (engine, conn)
 
 def main():
-    RM = Raw_Methods('Input/googleplaystore.csv', 'Input/googleplaystore_user_reviews.csv')
+    RM = Raw_Methods('googleplaystore.csv', 'googleplaystore_user_reviews.csv')
     print ('This method drops the "NaN" values from the right dataframe.')
     RM.merge_dfs_dropped_right_NaN()
     print ('This method drops the "NaN" values from the left dataframe.')
