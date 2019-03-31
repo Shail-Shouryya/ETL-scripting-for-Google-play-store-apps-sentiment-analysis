@@ -17,33 +17,30 @@ class Raw_Methods:
         self.csv2 = csv2
         print (f"Initialized {self.csv1} as self.csv1 and {self.csv2} as self.csv2. \n")
         self.left_df = pd.read_csv(self.csv1)
-        print (f"The first CSV has {len(left_df)} rows of data after converting the CSV to a Pandas dataframe.")
+        print (f"The first CSV has {len(self.left_df)} rows of data after converting the CSV to a Pandas dataframe.")
         self.right_df = pd.read_csv(self.csv2)
-        print (f"The second csv has {len(right_df)} rows of data after converting the CSV to a Pandas dataframe.")
+        print (f"The second csv has {len(self.right_df)} rows of data after converting the CSV to a Pandas dataframe.")
 
     def drop_right_NaN (self):
         dropped_NaN_right_df = self.right_df.dropna(axis=0, how='any', thresh=None, subset=None, inplace=False)
         print (f'The seond dataframe has {len(dropped_NaN_right_df)} rows after dropping the "NaN" values.')
-        return (dropped_NaN_right_df)
+        return (self.left_df, dropped_NaN_right_df)
 
     def drop_right_duplicates_then_NaN (self):
-        left_df, right_df = self.import_csvs()
-        dropped_duplicates_right_df = right_df.drop_duplicates()
+        dropped_duplicates_right_df = self.right_df.drop_duplicates()
         dropped_duplicates_and_NaN_right_df = dropped_duplicates_right_df.dropna(axis=0, how='any', thresh=None, subset=None, inplace=False)
         print (f'The seond dataframe has {len(dropped_duplicates_and_NaN_right_df)} rows after dropping the "NaN" values.')
-        return (left_df, dropped_duplicates_and_NaN_right_df)
+        return (self.left_df, dropped_duplicates_and_NaN_right_df)
 
     def drop_left_NaN (self):
-        left_df, right_df = self.import_csvs()
-        dropped_NaN_left_df = left_df.dropna(axis=0, how='any', thresh=None, subset=None, inplace=False)
+        dropped_NaN_left_df = self.left_df.dropna(axis=0, how='any', thresh=None, subset=None, inplace=False)
         print (f'The first dataframe has {len(dropped_NaN_left_df)} rows after dropping the "NaN" values.')
-        return (dropped_NaN_left_df, right_df)
+        return (dropped_NaN_left_df, self.right_df)
 
     def drop_left_duplicates (self):
-        left_df, right_df = self.import_csvs()
-        dropped_NaN_left_df = left_df.drop_duplicates() #keep='first'
+        dropped_NaN_left_df = self.left_df.drop_duplicates() #keep='first'
         print (f'The first dataframe has {len(dropped_NaN_left_df)} rows after dropping the duplicate values.')
-        return (dropped_NaN_left_df, right_df)
+        return (dropped_NaN_left_df, self.right_df)
 
     def merge_dfs_dropped_right_NaN (self):
         left_df, dropped_NaN_right_df = self.drop_right_NaN()
@@ -86,7 +83,7 @@ class SQL_Data_Wrangling():
         return (engine, conn)
 
 def main():
-    RM = Raw_Methods('googleplaystore.csv', 'googleplaystore_user_reviews.csv')
+    RM = Raw_Methods('Input/googleplaystore.csv', 'Input/googleplaystore_user_reviews.csv')
     print ('This method drops the "NaN" values from the right dataframe.')
     RM.merge_dfs_dropped_right_NaN()
     print ('This method drops the "NaN" values from the left dataframe.')
